@@ -1,0 +1,686 @@
+<!doctype html>
+<html lang="en" data-bs-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dhanusri T — Full Stack Web Developer</title>
+  <meta name="description" content="Portfolio of Dhanusri T, Full Stack Web Developer from Dharmapuri. Open to work. Projects, skills, blog, and contact." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Dhanusri T — Full Stack Web Developer" />
+  <meta property="og:description" content="Portfolio, projects, skills, blog and contact. Open to work." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://picsum.photos/1200/630?random=19" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Dhanusri T — Full Stack Web Developer" />
+  <meta name="twitter:description" content="Portfolio, projects, skills, blog and contact. Open to work." />
+  <meta name="twitter:image" content="https://picsum.photos/1200/630?random=20" />
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5.3 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- AOS (Animate on Scroll) -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <style>
+    :root{
+      /* Friendly, vibrant theme (HSL) with excellent contrast in light & dark */
+      --brand: hsl(258, 85%, 60%);
+      --brand-2: hsl(210, 85%, 56%);
+      --accent: hsl(160, 70%, 45%);
+      --hot: hsl(25, 95%, 55%);
+      --bg-soft: #f6f7fb;
+    }
+    [data-bs-theme="dark"]{
+      --bg-soft: #0f1117;
+    }
+
+    html, body { scroll-behavior: smooth; }
+    body { font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+
+    /* NAV */
+    .navbar-brand strong { letter-spacing:.3px; }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      padding: 7rem 0 5rem;
+      background:
+        radial-gradient(60rem 30rem at 10% -10%, rgba(111,94,219,.18), transparent 60%),
+        radial-gradient(40rem 20rem at 110% 10%, rgba(74,144,226,.16), transparent 60%),
+        linear-gradient(180deg, rgba(111,94,219,.10), transparent 60%);
+      overflow:hidden;
+      isolation:isolate;
+    }
+    .hero::after{ /* animated glow */
+      content:""; position:absolute; inset:-20% -30% auto -30%; height:120%;
+      background: conic-gradient(from 180deg at 50% 50%, rgba(111,94,219,.35), rgba(34,197,171,.25), transparent 70%);
+      filter: blur(60px) saturate(120%); opacity:.45; z-index:-1;
+      animation: drift 18s linear infinite;
+    }
+    @keyframes drift{ to{ transform: translateX(20%) rotate(1turn); } }
+
+    .avatar{
+      width:96px; height:96px; border-radius:50%; object-fit:cover;
+      border:3px solid rgba(111,94,219,.45);
+      box-shadow:0 10px 30px rgba(0,0,0,.08);
+    }
+    .tag{
+      font-size:.75rem; padding:.25rem .5rem; border-radius:999px;
+      border:1px solid rgba(111,94,219,.40); margin-right:.35rem;
+      backdrop-filter: blur(4px);
+    }
+
+    /* TITLES */
+    .section-title{
+      font-weight:800; letter-spacing:.2px;
+      background: linear-gradient(90deg, var(--brand), var(--brand-2), var(--accent));
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+    }
+
+    .shadow-soft{ box-shadow:0 10px 35px rgba(0,0,0,.10); }
+
+    /* CARDS */
+    .card, .p-3.rounded.border{
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.85), rgba(255,255,255,.75)),
+        var(--bg-soft);
+      border-color: rgba(0,0,0,.06) !important;
+      backdrop-filter: blur(8px);
+    }
+    [data-bs-theme="dark"] .card,
+    [data-bs-theme="dark"] .p-3.rounded.border{
+      background:
+        linear-gradient(180deg, rgba(17,20,28,.85), rgba(17,20,28,.75)),
+        var(--bg-soft);
+      border-color: rgba(255,255,255,.06) !important;
+    }
+
+    .project-card { position:relative; border-radius:.85rem; }
+    .project-card::before{
+      content:""; position:absolute; inset:-1px; border-radius:inherit; padding:1px;
+      background: conic-gradient(from 0deg, var(--brand), var(--accent), var(--brand-2), var(--hot), var(--brand));
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor; mask-composite: exclude;
+      animation: borderSpin 8s linear infinite;
+    }
+    @keyframes borderSpin{ to{ transform: rotate(1turn); } }
+    .project-card img, .blog-card img{ aspect-ratio:16/9; object-fit:cover; }
+
+    /* SKILLS */
+    .skill-badge{
+      border: 1px solid rgba(0,0,0,.15);
+      padding:.5rem .7rem; border-radius:.7rem; margin:.25rem; font-size:.9rem;
+      transition: transform .18s ease, background-color .18s ease;
+    }
+    [data-bs-theme="dark"] .skill-badge{ border-color: rgba(255,255,255,.18); }
+    .skill-badge:hover{ transform: translateY(-2px); background: rgba(111,94,219,.12); }
+
+    /* TIMELINE */
+    .timeline{ position:relative; padding-left:1.25rem; }
+    .timeline::before{ content:""; position:absolute; left:6px; top:0; bottom:0; width:2px; background: rgba(0,0,0,.15); }
+    [data-bs-theme="dark"] .timeline::before{ background: rgba(255,255,255,.18); }
+    .timeline-item{ position:relative; margin-left:.75rem; padding-left:1rem; }
+    .timeline-item::before{
+      content:""; position:absolute; left:-10px; top:.4rem; width:10px; height:10px; border-radius:50%;
+      background: var(--brand); box-shadow:0 0 0 6px rgba(111,94,219,.25);
+    }
+
+    /* BUTTON micro-interaction */
+    .btn{ transition: transform .18s ease, box-shadow .18s ease; }
+    .btn:hover{ transform: translateY(-2px); box-shadow:0 12px 30px rgba(0,0,0,.12); }
+
+    /* CONTACT */
+    .contact-card{ border:1px solid rgba(0,0,0,.08); }
+    [data-bs-theme="dark"] .contact-card{ border-color: rgba(255,255,255,.10); }
+
+    /* BACK TO TOP */
+    #backToTop{ position: fixed; right: 16px; bottom: 16px; display:none; z-index:1080; }
+
+    /* Focus styles for accessibility */
+    :focus-visible{ outline: 3px solid rgba(34,197,169,.65); outline-offset:2px; border-radius:8px; }
+
+    /* Respect reduced motion */
+    @media (prefers-reduced-motion: reduce){ *{ animation:none !important; transition:none !important; } }
+  </style>
+
+  <!-- JSON-LD Person -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Dhanusri T",
+    "jobTitle": "Full Stack Web Developer",
+    "description": "Full Stack Web Developer in Dharmapuri. Open to work.",
+    "homeLocation": {"@type":"Place", "name":"Dharmapuri, IN"},
+    "alumniOf": {"@type":"CollegeOrUniversity","name":"Jayalakshmi Institute of Technology"},
+    "sameAs": ["https://github.com/yourusername"],
+    "knowsAbout": ["HTML","CSS","JavaScript","Bootstrap","Tailwind CSS","React","TypeScript","Node.js","Express","Next.js","Python","Django","Flask","PHP","Java","Spring Boot",".NET","MySQL","MongoDB","Git","Docker"],
+    "email": "mailto:dhanusri.t@example.com"
+  }
+  </script>
+</head>
+
+<body data-bs-spy="scroll" data-bs-target="#mainNav" data-bs-offset="80" tabindex="0">
+  <!-- NAVBAR -->
+  <nav id="mainNav" class="navbar navbar-expand-lg fixed-top bg-body-tertiary border-bottom">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="#home">
+        <i class="bi bi-braces fs-4 text-primary"></i>
+        <span><strong>Dhanusri&nbsp;T</strong> <span class="text-body-secondary d-none d-md-inline">— Full Stack</span></span>
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navContent"
+              aria-controls="navContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+          <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+          <li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
+          <li class="nav-item"><a class="nav-link" href="#blog">Blog</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+          <li class="nav-item ms-lg-2">
+            <button id="themeToggle" class="btn btn-sm btn-outline-secondary d-flex align-items-center gap-2" type="button" aria-label="Toggle theme">
+              <i class="bi bi-moon-stars" aria-hidden="true"></i><span class="d-none d-sm-inline">Theme</span>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header id="home" class="hero">
+    <div class="container">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-7">
+          <div class="d-flex align-items-center gap-3 mb-3" data-aos="fade-up" data-aos-delay="0">
+            <img class="avatar" src="https://i.pravatar.cc/150?img=12" alt="Portrait of Dhanusri T" />
+            <div>
+              <h1 class="display-5 fw-bold mb-1">Hi, I'm Dhanusri&nbsp;T</h1>
+              <p class="lead text-body-secondary mb-0">Based in Dharmapuri • <span class="badge text-bg-success">Open to Work</span></p>
+            </div>
+          </div>
+          <p class="fs-5 mb-2" data-aos="fade-up" data-aos-delay="100">I build fast, accessible, and scalable web apps.</p>
+          <p class="text-body-secondary" data-aos="fade-up" data-aos-delay="150">
+            Full Stack Web Developer focused on user-centric frontends and robust backend APIs.
+          </p>
+          <p class="mb-4" data-aos="fade-up" data-aos-delay="200">
+            <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
+            <span class="tag">Bootstrap</span><span class="tag">React</span><span class="tag">TypeScript</span>
+            <span class="tag">Node.js</span><span class="tag">Python</span><span class="tag">Java</span>
+            <span class="tag">MySQL</span><span class="tag">MongoDB</span>
+          </p>
+          <div class="d-flex flex-wrap gap-2" data-aos="fade-up" data-aos-delay="250">
+            <a href="#projects" class="btn btn-primary btn-lg"><i class="bi bi-rocket-takeoff me-2"></i>View Work</a>
+            <button id="downloadResume" class="btn btn-outline-primary btn-lg"><i class="bi bi-file-earmark-arrow-down me-2"></i>Download Resume</button>
+            <a class="btn btn-dark btn-lg" href="https://github.com/yourusername" target="_blank" rel="noopener"><i class="bi bi-github me-2"></i>GitHub</a>
+          </div>
+          <div class="mt-3 text-body-secondary">
+            <span id="typedRole"></span>
+          </div>
+        </div>
+        <div class="col-lg-5" data-aos="fade-left" data-aos-delay="150">
+          <div class="card shadow-soft">
+            <div class="card-body">
+              <h5 class="card-title mb-3">Quick Info</h5>
+              <div class="row text-body-secondary small g-2">
+                <div class="col-6">Location: <strong class="text-body">Dharmapuri</strong></div>
+                <div class="col-6">Availability: <strong class="text-body">Open to Work</strong></div>
+                <div class="col-6">Email: <a href="mailto:dhanusri.t@example.com">dhanusri.t@example.com</a></div>
+                <div class="col-6">Phone: <a href="tel:+919876543210">+91 98765 43210</a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> <!-- row -->
+    </div>
+  </header>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="py-5">
+    <div class="container">
+      <div class="d-flex align-items-end justify-content-between mb-3">
+        <h2 class="section-title m-0">Projects</h2>
+        <a href="https://github.com/yourusername" class="small">See more on GitHub <i class="bi bi-arrow-up-right"></i></a>
+      </div>
+
+      <div class="row g-4" data-aos="fade-up" data-aos-delay="100">
+        <!-- Project 1 -->
+        <div class="col-md-6 col-lg-4">
+          <div class="card project-card h-100 shadow-soft">
+            <img src="https://picsum.photos/seed/meditrack/800/450" class="card-img-top img-fluid" alt="Screenshot of MediTrack project" />
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">MediTrack — Telemedicine Platform</h5>
+              <p class="card-text text-body-secondary">Telemedicine app with patient dashboards, booking, and video consults.</p>
+              <div class="mb-2">
+                <span class="badge text-bg-primary">Next.js</span>
+                <span class="badge text-bg-secondary">Node.js</span>
+                <span class="badge text-bg-info">MongoDB</span>
+                <span class="badge text-bg-dark">WebRTC</span>
+              </div>
+              <ul class="small text-body-secondary ps-3">
+                <li>Role: Full-Stack</li>
+                <li>Features: Auth, chat, e-prescriptions</li>
+              </ul>
+              <div class="mt-auto d-flex gap-2">
+                <a href="#" class="btn btn-sm btn-outline-primary"><i class="bi bi-box-arrow-up-right me-1"></i>Live</a>
+                <a href="#" class="btn btn-sm btn-outline-secondary"><i class="bi bi-github me-1"></i>Code</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Project 2 -->
+        <div class="col-md-6 col-lg-4">
+          <div class="card project-card h-100 shadow-soft">
+            <img src="https://picsum.photos/seed/shopsphere/800/450" class="card-img-top img-fluid" alt="Screenshot of ShopSphere project" />
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">ShopSphere — E-commerce Suite</h5>
+              <p class="card-text text-body-secondary">Storefront, admin dashboard, payments and analytics.</p>
+              <div class="mb-2">
+                <span class="badge text-bg-primary">React</span>
+                <span class="badge text-bg-secondary">Express</span>
+                <span class="badge text-bg-success">MySQL</span>
+                <span class="badge text-bg-dark">Stripe</span>
+              </div>
+              <ul class="small text-body-secondary ps-3">
+                <li>Role: Full-Stack</li>
+                <li>Features: SSR, carts, inventory, webhooks</li>
+              </ul>
+              <div class="mt-auto d-flex gap-2">
+                <a href="#" class="btn btn-sm btn-outline-primary"><i class="bi bi-box-arrow-up-right me-1"></i>Live</a>
+                <a href="#" class="btn btn-sm btn-outline-secondary"><i class="bi bi-github me-1"></i>Code</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Project 3 -->
+        <div class="col-md-6 col-lg-4">
+          <div class="card project-card h-100 shadow-soft">
+            <img src="https://picsum.photos/seed/travelnest/800/450" class="card-img-top img-fluid" alt="Screenshot of TravelNest project" />
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">TravelNest — Trip Planner</h5>
+              <p class="card-text text-body-secondary">Collaborative itineraries, maps and offline support.</p>
+              <div class="mb-2">
+                <span class="badge text-bg-primary">TypeScript</span>
+                <span class="badge text-bg-secondary">PWA</span>
+                <span class="badge text-bg-info">Leaflet</span>
+                <span class="badge text-bg-dark">IndexedDB</span>
+              </div>
+              <ul class="small text-body-secondary ps-3">
+                <li>Role: Frontend</li>
+                <li>Features: Offline, sync, map clustering</li>
+              </ul>
+              <div class="mt-auto d-flex gap-2">
+                <a href="#" class="btn btn-sm btn-outline-primary"><i class="bi bi-box-arrow-up-right me-1"></i>Live</a>
+                <a href="#" class="btn btn-sm btn-outline-secondary"><i class="bi bi-github me-1"></i>Code</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="col-md-6 col-lg-4">
+          <div class="card project-card h-100 shadow-soft">
+            <img src="https://picsum.photos/seed/taskpilot/800/450" class="card-img-top img-fluid" alt="Screenshot of TaskPilot project" />
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">TaskPilot — Team Kanban</h5>
+              <p class="card-text text-body-secondary">Realtime kanban with drag-drop, mentions and permissions.</p>
+              <div class="mb-2">
+                <span class="badge text-bg-primary">Vue</span>
+                <span class="badge text-bg-secondary">Firebase</span>
+                <span class="badge text-bg-info">Tailwind</span>
+                <span class="badge text-bg-dark">Cypress</span>
+              </div>
+              <ul class="small text-body-secondary ps-3">
+                <li>Role: Full-Stack</li>
+                <li>Features: Auth, notifications, CI/CD</li>
+              </ul>
+              <div class="mt-auto d-flex gap-2">
+                <a href="#" class="btn btn-sm btn-outline-primary"><i class="bi bi-box-arrow-up-right me-1"></i>Live</a>
+                <a href="#" class="btn btn-sm btn-outline-secondary"><i class="bi bi-github me-1"></i>Code</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div> <!-- row -->
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="py-5 border-top" data-aos="fade-up">
+    <div class="container">
+      <h2 class="section-title mb-3">Skills</h2>
+      <div class="row g-4">
+        <div class="col-lg-6">
+          <div class="p-3 rounded border h-100">
+            <h5 class="mb-3"><i class="bi bi-code-slash me-2"></i>Frontend</h5>
+            <div>
+              <span class="skill-badge">HTML5</span>
+              <span class="skill-badge">CSS3</span>
+              <span class="skill-badge">JavaScript</span>
+              <span class="skill-badge">Bootstrap</span>
+              <span class="skill-badge">Tailwind CSS</span>
+              <span class="skill-badge">React</span>
+              <span class="skill-badge">TypeScript</span>
+              <span class="skill-badge">Vanilla JS</span>
+              <span class="skill-badge">Vite</span>
+              <span class="skill-badge">Webpack</span>
+              <span class="skill-badge">SASS</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="p-3 rounded border h-100">
+            <h5 class="mb-3"><i class="bi bi-hdd-network me-2"></i>Backend</h5>
+            <div>
+              <span class="skill-badge">Node.js</span>
+              <span class="skill-badge">Express</span>
+              <span class="skill-badge">Next.js</span>
+              <span class="skill-badge">Python</span>
+              <span class="skill-badge">Django</span>
+              <span class="skill-badge">Flask</span>
+              <span class="skill-badge">PHP</span>
+              <span class="skill-badge">Java</span>
+              <span class="skill-badge">Spring Boot</span>
+              <span class="skill-badge">.NET</span>
+              <span class="skill-badge">REST APIs</span>
+              <span class="skill-badge">GraphQL</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="p-3 rounded border h-100">
+            <h5 class="mb-3"><i class="bi bi-database me-2"></i>Databases</h5>
+            <div>
+              <span class="skill-badge">MySQL</span>
+              <span class="skill-badge">MongoDB</span>
+              <span class="skill-badge">PostgreSQL</span>
+              <span class="skill-badge">Redis</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="p-3 rounded border h-100">
+            <h5 class="mb-3"><i class="bi bi-tools me-2"></i>Tools & Others</h5>
+            <div>
+              <span class="skill-badge">Git & GitHub</span>
+              <span class="skill-badge">Docker</span>
+              <span class="skill-badge">Nginx</span>
+              <span class="skill-badge">Jest</span>
+              <span class="skill-badge">Cypress</span>
+              <span class="skill-badge">Postman</span>
+              <span class="skill-badge">CI/CD</span>
+              <span class="skill-badge">AWS / Firebase</span>
+              <span class="skill-badge">Figma</span>
+            </div>
+          </div>
+        </div>
+      </div> <!-- row -->
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience" class="py-5 border-top" data-aos="fade-up">
+    <div class="container">
+      <h2 class="section-title mb-3">Experience</h2>
+      <div class="timeline">
+        <div class="timeline-item mb-4">
+          <h5 class="mb-1">Full Stack Web Development (Enabled with AI) Intern — AngamTech</h5>
+          <div class="text-body-secondary small mb-2">Internship • Dharmapuri • 2025</div>
+          <ul class="mb-0 text-body-secondary">
+            <li>Contributed to features across React/Node services and REST APIs.</li>
+            <li>Implemented responsive UIs with Bootstrap and accessibility best practices.</li>
+            <li>Built internal utilities with AI-assisted workflows to streamline development.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education" class="py-5 border-top" data-aos="fade-up">
+    <div class="container">
+      <h2 class="section-title mb-3">Education</h2>
+      <div class="row g-4">
+        <div class="col-md-8">
+          <div class="p-3 rounded border">
+            <h5 class="mb-1">BE — Computer Science and Engineering</h5>
+            <div class="text-body-secondary">Jayalakshmi Institute of Technology</div>
+            <p class="mb-0 small text-body-secondary">Core: Data Structures, Databases, OS, Networks, Web Technologies.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOG -->
+  <section id="blog" class="py-5 border-top" data-aos="fade-up">
+    <div class="container">
+      <div class="d-flex align-items-end justify-content-between mb-3">
+        <h2 class="section-title m-0">Blog</h2>
+        <a href="#" class="small">All posts <i class="bi bi-arrow-right"></i></a>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-4">
+          <article class="card blog-card h-100 shadow-soft">
+            <img src="https://picsum.photos/seed/blog1/800/450" class="card-img-top img-fluid" alt="Blog cover: Performance tips" />
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">10 Frontend Performance Wins with Bootstrap</h5>
+              <p class="card-text text-body-secondary">A practical checklist: responsive images, lazy load, preconnects, minification.</p>
+              <div class="mt-auto d-flex justify-content-between align-items-center">
+                <span class="badge text-bg-primary">Frontend</span>
+                <a href="#" class="btn btn-sm btn-outline-secondary">Read</a>
+              </div>
+            </div>
+          </article>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <article class="card blog-card h-100 shadow-soft">
+            <img src="https://picsum.photos/seed/blog2/800/450" class="card-img-top img-fluid" alt="Blog cover: APIs" />
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">Designing Clean REST APIs</h5>
+              <p class="card-text text-body-secondary">Versioning, idempotency, pagination patterns and error contracts.</p>
+              <div class="mt-auto d-flex justify-content-between align-items-center">
+                <span class="badge text-bg-secondary">Backend</span>
+                <a href="#" class="btn btn-sm btn-outline-secondary">Read</a>
+              </div>
+            </div>
+          </article>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <article class="card blog-card h-100 shadow-soft">
+            <img src="https://picsum.photos/seed/blog3/800/450" class="card-img-top img-fluid" alt="Blog cover: Testing" />
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">Testing UI Flows with Cypress</h5>
+              <p class="card-text text-body-secondary">From flaky tests to robust checks with fixtures and data-test selectors.</p>
+              <div class="mt-auto d-flex justify-content-between align-items-center">
+                <span class="badge text-bg-dark">Testing</span>
+                <a href="#" class="btn btn-sm btn-outline-secondary">Read</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div> <!-- row -->
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="py-5 border-top" data-aos="fade-up">
+    <div class="container">
+      <h2 class="section-title mb-3">Contact</h2>
+      <div class="row g-4">
+        <div class="col-lg-7">
+          <div class="card contact-card">
+            <div class="card-body">
+              <h5 class="card-title">Send a Message</h5>
+              <form id="contactForm" class="row g-3" autocomplete="on">
+                <div class="col-md-6">
+                  <label for="name" class="form-label">Your Name</label>
+                  <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+                <div class="col-md-6">
+                  <label for="email" class="form-label">Your Email</label>
+                  <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="col-12">
+                  <label for="subject" class="form-label">Subject</label>
+                  <input type="text" class="form-control" id="subject" name="subject" required>
+                </div>
+                <div class="col-12">
+                  <label for="message" class="form-label">Message</label>
+                  <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+                </div>
+                <div class="col-12">
+                  <button type="submit" class="btn btn-primary"><i class="bi bi-send me-2"></i>Send</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <div class="p-3 rounded border h-100">
+            <h5 class="mb-3">Contact Info</h5>
+            <p class="mb-1"><i class="bi bi-envelope me-2"></i><a href="mailto:dhanusri.t@example.com">dhanusri.t@example.com</a></p>
+            <p class="mb-1"><i class="bi bi-telephone me-2"></i><a href="tel:+919876543210">+91 98765 43210</a></p>
+            <div class="mt-3 d-flex flex-wrap gap-2">
+              <a class="btn btn-outline-secondary btn-sm" href="https://github.com/yourusername" target="_blank" rel="noopener"><i class="bi bi-github me-1"></i>GitHub</a>
+              <a class="btn btn-outline-secondary btn-sm" href="#" target="_blank" rel="noopener"><i class="bi bi-linkedin me-1"></i>LinkedIn</a>
+              <a class="btn btn-outline-secondary btn-sm" href="#" target="_blank" rel="noopener"><i class="bi bi-twitter-x me-1"></i>X</a>
+            </div>
+          </div>
+        </div>
+      </div> <!-- row -->
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="py-4 border-top">
+    <div class="container small d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
+      <div>© <span id="year"></span> • <strong>Dhanusri T</strong> • All rights reserved.</div>
+      <div class="d-flex align-items-center gap-3">
+        <a href="#home" class="link-secondary">Back to top</a>
+      </div>
+    </div>
+  </footer>
+
+  <button id="backToTop" class="btn btn-primary rounded-circle p-3" aria-label="Back to top">
+    <i class="bi bi-arrow-up"></i>
+  </button>
+
+  <!-- JS: Bootstrap Bundle (with Popper) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- AOS -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <!-- Typed.js -->
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.1.0/dist/typed.umd.js"></script>
+  <!-- jsPDF -->
+  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+
+  <script>
+    // --- Theme toggle (Bootstrap color modes)
+    (function() {
+      const getStoredTheme = () => localStorage.getItem('theme');
+      const setStoredTheme = (t) => localStorage.setItem('theme', t);
+      const getPreferredTheme = () => getStoredTheme() || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      const setTheme = (t) => document.documentElement.setAttribute('data-bs-theme', t);
+
+      setTheme(getPreferredTheme());
+      const toggleBtn = document.getElementById('themeToggle');
+      const updateIcon = () => {
+        const isDark = document.documentElement.getAttribute('data-bs-theme') === 'dark';
+        toggleBtn.querySelector('i').className = isDark ? 'bi bi-brightness-high' : 'bi bi-moon-stars';
+      };
+      updateIcon();
+
+      toggleBtn.addEventListener('click', () => {
+        const current = document.documentElement.getAttribute('data-bs-theme');
+        const next = current === 'dark' ? 'light' : 'dark';
+        setTheme(next); setStoredTheme(next); updateIcon();
+      });
+    })();
+
+    // --- AOS (Animate on Scroll)
+    AOS.init({ duration: 800, easing: 'ease-out-cubic', once: false, offset: 80 });
+
+    // --- Typed.js rotating roles
+    if (window.Typed) {
+      new Typed('#typedRole', {
+        strings: [
+          'Full Stack Web Developer',
+          'Frontend: HTML • CSS • JS • Bootstrap • React • TypeScript',
+          'Backend: Node.js • Python • Java • PHP • .NET',
+          'Databases: MySQL • MongoDB'
+        ],
+        typeSpeed: 30, backSpeed: 14, backDelay: 1200, startDelay: 300, smartBackspace: true, loop: true
+      });
+    }
+
+    // --- Back to top
+    (function(){
+      const btn = document.getElementById('backToTop');
+      window.addEventListener('scroll', () => { btn.style.display = window.scrollY > 400 ? 'inline-flex' : 'none'; });
+      btn.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+    })();
+
+    // --- Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // --- Contact form → mailto:
+    document.getElementById('contactForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const subject = document.getElementById('subject').value.trim();
+      const message = document.getElementById('message').value.trim();
+      const to = 'dhanusri.t@example.com'; // <-- replace with your real email
+      const body = `Hi Dhanusri,%0D%0A%0D%0A${encodeURIComponent(message)}%0D%0A%0D%0AThanks,%0D%0A${encodeURIComponent(name)}%0D%0A${encodeURIComponent(email)}`;
+      const href = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${body}`;
+      window.location.href = href;
+    });
+
+    // --- Download Resume (jsPDF)
+    document.getElementById('downloadResume').addEventListener('click', function(){
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+      const line = (y) => doc.line(10, y, 200, y);
+
+      doc.setFont('helvetica', 'bold'); doc.setFontSize(18);
+      doc.text('Dhanusri T', 10, 18);
+      doc.setFont('helvetica', 'normal'); doc.setFontSize(11);
+      doc.text('Full Stack Web Developer • Dharmapuri • Open to Work', 10, 26);
+      doc.text('Email: dhanusri.t@example.com  |  Phone: +91 98765 43210  |  GitHub: github.com/yourusername', 10, 34);
+      line(36);
+
+      doc.setFont('helvetica','bold'); doc.setFontSize(14); doc.text('Skills', 10, 46);
+      doc.setFont('helvetica','normal'); doc.setFontSize(11);
+      doc.text('Frontend: HTML, CSS, JS, Bootstrap, Tailwind, React, TypeScript', 10, 54);
+      doc.text('Backend: Node.js, Express, Next.js, Python, Django, Flask, PHP, Java, Spring Boot, .NET', 10, 62);
+      doc.text('Databases: MySQL, MongoDB  |  Tools: Git, Docker, Jest, Cypress, Postman, AWS', 10, 70);
+
+      doc.setFont('helvetica','bold'); doc.setFontSize(14); doc.text('Experience', 10, 84);
+      doc.setFont('helvetica','normal'); doc.setFontSize(11);
+      doc.text('Full Stack Web Development (Enabled with AI) Intern — AngamTech (2025)', 10, 92);
+      doc.text('- Built responsive UIs and API features across the stack', 14, 100);
+      doc.text('- Practiced accessibility and performance optimizations', 14, 108);
+
+      doc.setFont('helvetica','bold'); doc.setFontSize(14); doc.text('Education', 10, 122);
+      doc.setFont('helvetica','normal'); doc.setFontSize(11);
+      doc.text('BE — Computer Science and Engineering, Jayalakshmi Institute of Technology', 10, 130);
+
+      doc.save('Dhanusri_T_Resume.pdf');
+    });
+  </script>
+</body>
+</html>
